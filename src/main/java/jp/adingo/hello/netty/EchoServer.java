@@ -20,7 +20,6 @@ import org.jboss.netty.handler.codec.string.StringEncoder;
 public class EchoServer {
 
 	public static void main(String[] args) {
-
 		ChannelFactory factory = new NioServerSocketChannelFactory( // server
 				Executors.newCachedThreadPool(),
 				Executors.newCachedThreadPool());
@@ -42,7 +41,7 @@ public class EchoServer {
 				return pipeline;
 			}
 		});
-
+		System.out.println("starting server port 9999");
 		bootstrap.bind(new InetSocketAddress(9999)); // 9999番ポートでlisten
 	}
 }

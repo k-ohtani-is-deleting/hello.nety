@@ -1,5 +1,8 @@
 package jp.adingo.hello.netty;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
@@ -13,7 +16,13 @@ public class EchoServerHandler extends SimpleChannelHandler {
 	 */
 	@Override
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent event) {
-		String msg = (String) event.getMessage(); // 受信電文を取りだす
-		ctx.getChannel().write(msg); // クライアントに送信
+		String msg = (String) event.getMessage();
+		ctx.getChannel().write(msg + " at " + today());
+	}
+	
+	static String today() {
+		String pattern = "yyyy-MM-dd HH:mm:ss";
+		SimpleDateFormat format = new SimpleDateFormat(pattern);
+		return format.format(new Date());
 	}
 }
